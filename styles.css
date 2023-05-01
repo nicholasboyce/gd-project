@@ -1,3 +1,38 @@
+@font-face {
+    font-family: Roboto;
+    src: url(fonts/Roboto-Regular-webfont.woff) format('woff');
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url(fonts/Roboto-ThinItalic-webfont.woff) format('woff');
+    font-style: italic;
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url(fonts/Roboto-Bold-webfont.woff) format('woff');
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url(fonts/Roboto-Light-webfont.woff) format('woff');
+    font-style: normal;
+    font-weight: 300;
+}
+
+:root {
+    --dark-green: hsla(120, 61%, 10%);
+    --light-green: hsla(120, 30%, 80%);
+    --light-pink: hsla(351, 100%, 86%);
+    --pale-yellow: hsla(55, 67%, 80%);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,11 +43,13 @@
 
 html {
     font-size: 12px;
+    font-family: Roboto, sans-serif;
 }
 
 body {
     min-height: 100vh;
-    border: 10px solid lime;
+    display: flex;
+    flex-direction: column;
 }
 
 .page {
@@ -22,23 +59,31 @@ body {
 
 /* || Image Styling */
 .logo {
-    min-width: 50px;
+    min-width: 55px;
     max-width: 5vw;
+}
+
+div.logo {
+    margin-inline-end: .5rem;
 }
 
 .logo img {
     max-width: 100%;
-    padding-inline-end: 1rem;
 }
 
 /* || General Section Styling */
 
-header {
-    background-color: hsla(55, 67%, 80%);
+body > header {
+    background-color: var(--pale-yellow);
+    padding: .5rem 0;
+}
+
+header h1 {
+    font-size: calc(1.75rem + 0.25vw);
 }
 
 .first-section {
-    background-color: hsla(120, 61%, 10%);
+    background-color: var(--dark-green);
 }
 
 .second-section {
@@ -48,20 +93,24 @@ header {
     min-height: 50vh;
     display: flex;
     align-items: center;
+    flex-grow: 1;
 }
 
 .third-section {
-    background-color: hsla(55, 67%, 80%);
+    background-color: var(--pale-yellow);
 }
 
 footer {
-    background-color: hsla(120, 61%, 10%);
+    background-color: var(--dark-green);
     color: hsla(0, 0%, 100%);
 }
 
 /* || Specific Section Styling */
+
+/* || Header Styling */
+
 header .page {
-    color: hsla(120, 61%, 10%);
+    color: var(--dark-green);
     display: flex;
     align-items: flex-end;
 }
@@ -73,26 +122,72 @@ nav .menu {
     justify-content: space-around;
 }
 
+nav li {
+    font-size: 1.2rem;
+}
+
+nav li a {
+    padding: .5rem 1rem;
+}
+
+/* Hero Text Styling */
+
 .hero-text {
     width: 24rem;
     max-width: 100%;
-    background-color: hsla(120, 61%, 10%);
-    color: hsla(120, 30%, 80%);
-    border-radius: 10px;
-    padding-block-start: 1rem;
-    padding-block-end: 1rem;
-    padding-inline-end: 1rem;
+    background-color: var(--dark-green);
+    color: var(--light-green);
+    border-radius: 15px;
+    padding: 1.5rem 1.5rem;
 }
 
 .hero-text h2 {
-    padding-block-start: 2rem;
-    padding-block-end: 2rem;
-    padding-inline-start: 1rem;
+    padding: 2rem 1rem;
     font-size: 2rem;
 }
+
+/* || Card Section Styling */
+
 .cards {
     display: flex;
+    color: var(--light-green);
+    justify-content: space-around;
+    gap: 5vw 2vw;
+    padding: 5rem 0;
 }
+
+.card {
+    background-color: var(--dark-green);
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-height: 25rem;
+}
+
+.card h3 {
+    font-size: 1.75rem;
+}
+
+/* || Footer Styling */
+
+address {
+    display: flex;
+    justify-content: space-between;
+    padding: 2.5rem 0;
+}
+
+address a {
+    color: hsla(0, 0%, 100%);
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /* || Link Styling */
 
 .menu a {
@@ -107,10 +202,17 @@ nav .menu {
 
 .menu a:hover {
     text-decoration: none;
-    background-color: hsla(351, 100%, 86%);
+    background-color: var(--light-pink);
+    color: var(--dark-green);
 }
 
 
 .pink-highlight {
-    color:hsla(351, 100%, 86%);
+    color:var(--light-pink);
+}
+
+@media screen and (max-width: 970px) {
+    .cards {
+        flex-direction: column;
+    }
 }
