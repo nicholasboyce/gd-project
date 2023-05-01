@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* || General Styling */
+
+html {
+    font-size: 12px;
+}
+
+body {
+    min-height: 100vh;
+    border: 10px solid lime;
+}
+
+.page {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* || Image Styling */
+.logo {
+    min-width: 50px;
+    max-width: 5vw;
+}
+
+.logo img {
+    max-width: 100%;
+    padding-inline-end: 1rem;
+}
+
+/* || General Section Styling */
+
+header {
+    background-color: hsla(55, 67%, 80%);
+}
+
+.first-section {
+    background-color: hsla(120, 61%, 10%);
+}
+
+.second-section {
+    background-image: url(images/grenada-coast.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+}
+
+.third-section {
+    background-color: hsla(55, 67%, 80%);
+}
+
+footer {
+    background-color: hsla(120, 61%, 10%);
+    color: hsla(0, 0%, 100%);
+}
+
+/* || Specific Section Styling */
+header .page {
+    color: hsla(120, 61%, 10%);
+    display: flex;
+    align-items: flex-end;
+}
+
+nav .menu {
+    display: flex;
+    list-style-type: none;
+    color: hsla(0, 0%, 100%);
+    justify-content: space-around;
+}
+
+.hero-text {
+    width: 24rem;
+    max-width: 100%;
+    background-color: hsla(120, 61%, 10%);
+    color: hsla(120, 30%, 80%);
+    border-radius: 10px;
+    padding-block-start: 1rem;
+    padding-block-end: 1rem;
+    padding-inline-end: 1rem;
+}
+
+.hero-text h2 {
+    padding-block-start: 2rem;
+    padding-block-end: 2rem;
+    padding-inline-start: 1rem;
+    font-size: 2rem;
+}
+.cards {
+    display: flex;
+}
+/* || Link Styling */
+
+.menu a {
+    outline: none;
+    line-height: 3;
+}
+
+.menu a:link, .menu a:visited {
+    color:hsla(0, 0%, 100%);
+    text-decoration: none;
+}
+
+.menu a:hover {
+    text-decoration: none;
+    background-color: hsla(351, 100%, 86%);
+}
+
+
+.pink-highlight {
+    color:hsla(351, 100%, 86%);
+}
