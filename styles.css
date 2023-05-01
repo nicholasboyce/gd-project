@@ -85,6 +85,7 @@ header h1 {
 
 .first-section {
     background-color: var(--dark-green);
+    min-height: 3rem;
 }
 
 .second-section {
@@ -116,6 +117,10 @@ header .page {
     align-items: flex-end;
 }
 
+nav {
+    position: relative;
+}
+
 nav .menu {
     display: flex;
     list-style-type: none;
@@ -127,9 +132,32 @@ nav li {
     font-size: 1.2rem;
 }
 
-nav li a {
+nav li:hover {
+    background-color: var(--light-pink);
+}
+
+nav .menu li a {
     padding: .5rem 1rem;
 }
+
+.toggle-button {
+    position: relative;
+    top: .6rem;
+    left: 95%;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+}
+
+.toggle-button .bar {
+    height: .25rem;
+    width: 100%;
+    background-color: hsla(0, 0%, 100%);
+    border-radius: 10px;
+}
+
 
 /* Hero Text Styling */
 
@@ -204,7 +232,6 @@ figure {
 
 .menu a:hover {
     text-decoration: none;
-    background-color: var(--light-pink);
     color: var(--dark-green);
 }
 
@@ -219,8 +246,34 @@ figure {
     }
 }
 
-@media screen and (max-width: 970px) {
+@media screen and (max-width: 700px) {
     header h1 {
         font-size: 1.5rem;
+    }
+
+    .toggle-button {
+        display: flex;
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .navbar-links {
+        padding-block-start: 1rem;
+    }
+
+    .navbar-links .menu {
+        display: none;
+        flex-direction: column;
+    }
+
+    .menu li {
+        text-align: center;
+    }
+
+    .menu.active {
+        display: flex;
     }
 }
