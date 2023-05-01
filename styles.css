@@ -140,6 +140,7 @@ nav li a {
     color: var(--light-green);
     border-radius: 15px;
     padding: 1.5rem 1.5rem;
+    margin: 10vh 0;
 }
 
 .hero-text h2 {
