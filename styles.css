@@ -162,7 +162,7 @@ nav .menu li a {
 /* Hero Text Styling */
 
 .hero-text {
-    width: 40rem;
+    width: 35rem;
     max-width: 100%;
     background-color: var(--dark-green);
     color: var(--light-green);
