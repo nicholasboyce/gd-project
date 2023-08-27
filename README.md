@@ -1,1 +1,1 @@
-# gd-project
+The goal of this project is experiement with redesigning the eLandRegistry System website of Grenada, utilizing the national flag color palette as well as the original website's color scheme. Users will be able to create and log into accounts and search/filter for (dummy) records.
