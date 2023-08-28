@@ -46,19 +46,22 @@
         <section>
             <div class="page">
                 <h1>Advanced Search</h1>
-                <div class="search-bar"> <!--Should I use a fieldset for this instead?-->
-                    <p>
-                        <label for="query">Query: </label>
-                        <input id="query" name="query" type="search" />
-                    </p>
-                    <select id="filter" name="filter">
-                        <option>Book number</option>
-                        <option>Page number</option>
-                        <option>Document registration number</option>
-                        <option>Document entry year</option>
-                        <option>Known Names</option>
-                    </select>
-                </div>
+                <form>
+                    <fieldset class="search-bar"> <!--Should I use a fieldset or div for this?-->
+                        <p>
+                            <label for="query">Query: </label>
+                            <input id="query" name="query" type="search" />
+                        </p>
+                        <select id="filter" name="filter">
+                            <option value="book-number">Book number</option>
+                            <option value="page-number">Page number</option>
+                            <option value="registration-number">Document registration number</option>
+                            <option value="entry-year">Document entry year</option>
+                            <option value="name">Known Names</option>
+                        </select>
+                    </fieldset>
+                    <button type="submit">Submit</button>
+                </form>
             </div>
         </section>
     </main>
