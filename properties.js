@@ -51,9 +51,6 @@ function initialize(properties) {
         lastSearch = currSearch = query.value.trim();
 
         finalGroup = filteredGroup.filter((property) => property[`${currFilter}`].toString().includes(currSearch));
-        //finalGroup = filteredGroup;
-        console.log(filteredGroup[0][`${currFilter}`]);
-        console.log(finalGroup);
         updateDisplay();
     }
     

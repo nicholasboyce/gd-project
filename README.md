@@ -9,12 +9,12 @@ Stories:
 - [ ] Create separate about page
 - [ ] Create login/register page
 - [ ] Implement backend
-- [ ] Allow users to see all available data
-- [ ] Allow users to search data through book number
-- [ ] Allow users to search data through page number
-- [ ] Allow users to search data via document registration number
-- [ ] Allow users to search data through document entry year
-- [ ] Allow users to search data via known names (first and last)
+- [X] Allow users to see all available data
+- [X] Allow users to search data through book number
+~- [ ] Allow users to search data through page number~
+- [X] Allow users to search data via document registration number
+- [X] Allow users to search data through document entry year
+- [X] Allow users to search data via known names (first and last)
 
 Technologies Involved:
 - HTML
