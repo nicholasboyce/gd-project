@@ -94,6 +94,7 @@ function initialize(properties) {
         docNum.textContent = `Document Reg. Number: ${entry.docNumber}`;
 
         card.append(address, owner, year, value, bookNum, docNum);
+        card.setAttribute("class", "result");
 
         return card;
     }

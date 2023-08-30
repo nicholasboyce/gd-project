@@ -88,7 +88,7 @@ header h1 {
     min-height: 3rem;
 }
 
-.second-section {
+.home-page .second-section {
     background-image: url(images/grenada-coast.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -98,7 +98,7 @@ header h1 {
     flex-grow: 1;
 }
 
-.third-section {
+.home-page .third-section {
     background-color: var(--pale-yellow);
 }
 

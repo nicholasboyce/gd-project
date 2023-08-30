@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eLandGrenada: Search</title>
     <link href="../styles.css" rel="stylesheet" type="text/css" />
+    <link href="../styles/search.css" rel="stylesheet" type="text/css" />
     <script src="../script.js" defer></script>
     <script src="../properties.js" defer></script>
 </head>
-<body>
+<body class="search-page">
     <header>
         <div class="page">
             <div class="logo">
@@ -44,9 +45,9 @@
 
         <!--Second section based on JSTOR-->
         <!--How do I make it so that this has its own style? Stylesheet was designed for one page only-->
-        <section>
+        <section class="pale-yellow">
             <div class="page">
-                <h1>Advanced Search</h1>
+                <h1 class="advanced">Advanced Search</h1>
                 <form>
                     <fieldset class="search-bar"> <!--Should I use a fieldset or div for this?-->
                         <p>
@@ -65,11 +66,30 @@
             </div>
         </section>
 
-        <section class="results">
+        <section class="pale-yellow results">
             <div class="page" id="results">
 
             </div>
         </section>
     </main>
+    <footer>
+        <div class="page">
+            <address>
+                <div class="contact-info">
+                    <p>Contact us at: 473-440-2030 | <a href="mailto:elandgrenada@gmail.com">elandgrenada@gmail.com</a></p>
+                    <p>Supported by UWI</p>
+                    <p>Funding by the World Bank</p>
+                    <p>(Un)official website for the Government of Grenada</p>
+                    <p><small>Looking for Grenada government information and services? <a href="https://gov.gd">Visit gov.gd</a></small></p>
+                </div>
+                <figure class="logo">
+                    <a href="https:gov.gd">
+                        <img src="../images/Coat_of_arms_of_Grenada.png" alt="Coat of arms of Grenada." />
+                        <figcaption>GOV.GD</figcaption>
+                    </a>
+                </figure>   
+            </address>
+        </div>
+    </footer>
 </body>
 </html>
