@@ -212,7 +212,7 @@ address a {
     color: hsla(0, 0%, 100%);
 }
 
-figure {
+figure a{
     display: flex;
     flex-direction: column;
     align-items: center;
