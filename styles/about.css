@@ -4,9 +4,13 @@
     --light-pink: hsla(351, 100%, 86%);
     --pale-yellow: hsla(55, 67%, 80%);
 }
-
+main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
 .about {
-    min-height: 80.62vh;
+    flex-grow: 1;
     background-color: var(--pale-yellow);
     color: var(--dark-green);
 }
