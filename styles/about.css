@@ -1,0 +1,25 @@
+:root {
+    --dark-green: hsla(120, 61%, 10%);
+    --light-green: hsla(120, 30%, 80%);
+    --light-pink: hsla(351, 100%, 86%);
+    --pale-yellow: hsla(55, 67%, 80%);
+}
+
+.about {
+    min-height: 80.62vh;
+    background-color: var(--pale-yellow);
+    color: var(--dark-green);
+}
+
+.about div {
+    padding: 1rem 0;
+}
+
+.about h1 {
+    font-size: 2rem;
+}
+
+.about p {
+    padding-top: .75rem;
+    font-size: 1.25rem;
+}

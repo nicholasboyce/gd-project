@@ -16,6 +16,8 @@ form {
     display: flex;
     margin-inline-end: 10px;
     padding: 3px 5px;
+    max-width: 80%;
+    color: var(--dark-green);
 }
 
 .search-bar p {
@@ -29,6 +31,7 @@ form {
 .advanced {
     font-size: 2rem;
     padding-top: 1rem;
+    color: var(--dark-green);
 }
 
 .pale-yellow {
@@ -56,4 +59,20 @@ form {
 }
 .result p{
     font-size: 1.25rem;
+}
+
+@media screen and (max-width: 668px) {
+    .search-bar {
+        flex-direction: column;
+        gap: 5px;
+    }
+    button {
+        flex-grow: 1;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    form {
+        flex-direction: column;
+    }
 }
