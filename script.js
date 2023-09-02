@@ -12,5 +12,23 @@ if ("serviceWorker" in navigator) {
         "/gd-project/sw.js",
       )
       .then(() => console.log("Service Worker Registered"));
-  }
+}
+
+const loginButton = document.querySelector(".signin");
+const loginBackground = document.querySelector(".login-background");
+const modal = document.querySelector(".modal");
+
+loginButton.addEventListener('click', () => {
+  //Show background div, blur everything, and show login modal
+  console.log('Click!');
+  modal.classList.toggle('popup')
+});
+
+loginBackground.addEventListener('click', () => {
+  //Show background div, blur everything, and show login modal
+  console.log('Click!');
+  modal.classList.toggle('popup')
+});
+
+
   

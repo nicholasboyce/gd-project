@@ -19,6 +19,7 @@
             </div>
         </header>
         <main>
+
             <!--First section will be the nav section. -->
             <section class="first-section">
                 <div class="page">
@@ -34,7 +35,7 @@
                                 <li><a href="pages/search.html">Search</a></li>
                                 <li><a href="pages/about.html">About</a></li>
                                 <li><a href="pages/register.html">Register</a></li>
-                                <li><a href="#">Sign In</a></li>
+                                <li class="signin"><a href="#">Sign In</a></li>
                             </ul>
                         </div>
                     </nav>
@@ -89,6 +90,22 @@
                     </div>
                 </div>
             </section>
+
+            <!--This will be the modal button (login popup).-->
+            <div class="modal">
+                <div class="login-background"></div>
+                <div class="login">
+                    <h2>Login</h2>
+                    <h3>Please enter your credentials</h3>
+                    <form class="login-form">
+                        <input type="text" placeholder="Username" />
+                        <input type="password" placeholder="Password" />
+                        <a href="#">Forgot your password?</a>
+    
+                        <button type="submit">LOGIN</button>
+                    </form>
+                </div>
+            </div>
 
         </main>
         <footer>
