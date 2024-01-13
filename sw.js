@@ -2,20 +2,36 @@ self.addEventListener("install", (e) => {
     e.waitUntil(
       caches
         .open("data-store")
-        .then((cache) =>
-          cache.addAll([
-            "/gd-project/",
-            "/gd-project/index.html",
-            "/gd-project/styles.css",
-            "/gd-project/script.js",
-            "/gd-project/pages/",
-            "/gd-project/pages/about.html",
-            "/gd-project/pages/register.html",
-            "/gd-project/pages/search.html",
-            "/gd-project/pages/properties.json",
-          ])
+        .then(async (cache) => {
+          let ok
+          const base = 'gd-project'
+          const paths =  [
+            `/${base}/`,
+            `/${base}/index.html`,
+            `/${base}/styles.css`,
+            `/${base}/script.js`,
+            `/${base}/pages/`,
+            `/${base}/pages/about.html`,
+            `/${base}/pages/register.html`,
+            `/${base}/pages/search.html`,
+            `/${base}/pages/properties.json`,
+          ]
+          try {
+            ok = await cache.addAll(paths)
+          } catch (error) {
+            console.error('sw: cache.addAll')
+            for (let i of paths) {
+              try {
+                ok = await cache.add(i);
+              } catch (err) {
+                console.warn('sw: cache.add',i);
+              }
+            }
+          }
+
+          return ok;
+        }
         )
-        .catch(error => console.log(error))
     );
 });
 
