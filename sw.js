@@ -4,7 +4,7 @@ self.addEventListener("install", (e) => {
         .open("data-store")
         .then((cache) =>
           cache.addAll([
-            "/index.html",
+            "/gd-project/index.html",
             "/gd-project/styles.css",
             "/gd-project/script.js",
             "/gd-project/pages/",
@@ -14,6 +14,7 @@ self.addEventListener("install", (e) => {
             "/gd-project/pages/properties.json",
           ])
         )
+        .catch(error => console.log(error))
     );
 });
 
