@@ -21,6 +21,10 @@ self.addEventListener("install", (e) => {
             `/${base}/pages/register.html`,
             `/${base}/pages/search.html`,
             `/${base}/pages/properties.json`,
+            `/${base}/styles/`,
+            `/${base}/styles/about.css`,
+            `/${base}/styles/search.css`,
+            `/${base}/styles/register.css`,
           ]
           try {
             ok = await cache.addAll(paths)
