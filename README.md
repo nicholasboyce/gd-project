@@ -3,7 +3,8 @@ The goal of this project is to experiement with redesigning the eLandRegistry Sy
 As a stretch goal, I'd like to implement a backend so that users can create real accounts to "log in" - but this functionality wouldn't affect anything on the website itself.
 
 
-The original website looks like this: https://elandregistry.gov.gd/
+The original [website](https://elandregistry.gov.gd/) looks like this:
+![](images/screenshot.png)
 
 Stories:
 - [X] Implement responsive navbar

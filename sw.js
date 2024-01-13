@@ -12,15 +12,15 @@ self.addEventListener("install", (e) => {
             "/gd-project/pages/register.html",
             "/gd-project/pages/search.html",
             "/gd-project/pages/properties.json",
-          ]),
-        ),
+          ])
+        )
     );
 });
 
 self.addEventListener("fetch", (e) => {
     console.log(e.request.url);
     e.respondWith(
-        caches.match(e.request).then((response) => response || fetch(e.request)),
+        caches.match(e.request).then((response) => response || fetch(e.request))
     );
 });
   
