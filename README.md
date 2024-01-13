@@ -1,4 +1,4 @@
-The goal of this project is to experiement with redesigning the eLandRegistry System website of Grenada, utilizing the national flag color palette as well as the original website's color scheme. Users will be able to search/filter for (dummy) records of properties. 
+The goal of this project is to experiment with redesigning the eLandRegistry System website of Grenada, utilizing the national flag color palette as well as the original website's color scheme. Users will be able to search/filter for (dummy) records of properties. 
 
 As a stretch goal, I'd like to implement a backend so that users can create real accounts to "log in" - but this functionality wouldn't affect anything on the website itself.
 

@@ -4,7 +4,7 @@ self.addEventListener("install", (e) => {
         .open("data-store")
         .then((cache) =>
           cache.addAll([
-            "/gd-project/index.html",
+            "/index.html",
             "/gd-project/styles.css",
             "/gd-project/script.js",
             "/gd-project/pages/",
