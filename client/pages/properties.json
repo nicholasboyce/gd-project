@@ -1,63 +1,63 @@
 [
     {
-        "entryYear": 2023,
-        "bookNumber": 1,
+        "year": 2023,
+        "book": 1,
         "docNumber": 1, 
         "address": "123 Mt Gay Rd",
         "value": 100000,
         "owner": "Michael Covers"
     },
     {
-        "entryYear": 2018,
-        "bookNumber": 2,
+        "year": 2018,
+        "book": 2,
         "docNumber": 2, 
         "address": "15 Governor's Road",
         "value": 1000000,
         "owner": "John Henry"
     },
     {   
-        "entryYear": 2007,
-        "bookNumber": 2,
-        "docNumber": 2, 
+        "year": 2007,
+        "book": 3,
+        "docNumber": 3, 
         "address": "42 Nutmeg Hill",
         "value": 700000,
         "owner": "Joseph Covers"
     },
     {
-        "entryYear": 2013,
-        "bookNumber": 3,
-        "docNumber": 3, 
+        "year": 2013,
+        "book": 4,
+        "docNumber": 4, 
         "address": "1 Braithwaite Estate",
         "value": 3000000,
         "owner": "Anthony Brathwaite"
     },
     {
-        "entryYear": 2000,
-        "bookNumber": 4,
-        "docNumber": 4, 
+        "year": 2000,
+        "book": 5,
+        "docNumber": 5, 
         "address": "32 Willoughby Rd",
         "value": 600000,
         "owner": "Mary Lucas"
     },
     {
-        "entryYear": 2022,
-        "bookNumber": 5,
-        "docNumber": 5, 
+        "year": 2022,
+        "book": 6,
+        "docNumber": 6, 
         "address": "77 St David Street",
         "value": 70000,
         "owner": "Ann Covers"
     },
     {
-        "entryYear": 2016,
-        "bookNumber": 6,
-        "docNumber": 6, 
+        "year": 2016,
+        "book": 7,
+        "docNumber": 7, 
         "address": "125 Grand Anse Lane",
         "value": 850000,
         "owner": "Catherine Henry"
     },
     {
-        "entryYear": 2005,
-        "bookNumber": 7,
+        "year": 2005,
+        "book": 7,
         "docNumber": 7, 
         "address": "225 Mt Gay Rd",
         "value": 970000,
