@@ -6,13 +6,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/landrecords")
 class LandRecordController {
+
+    private LandRecordRepository landRecordRepository;
+
+    private LandRecordController(LandRecordRepository landRecordRepository) {
+        this.landRecordRepository = landRecordRepository;
+    }
     
     @GetMapping("/{requestedId}")
     private ResponseEntity<LandRecord> findById(@PathVariable Long requestedId) {
-        LandRecord landRecord = new LandRecord("123 Mulberry Lane", "Nicholas Boyce", 2024, 777000, 1, 1);
-        return ResponseEntity.ok(landRecord);
+        Optional<LandRecord> landRecordOptional = landRecordRepository.findById(requestedId);
+
+        if (landRecordOptional.isPresent()) {
+            return ResponseEntity.ok(landRecordOptional.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

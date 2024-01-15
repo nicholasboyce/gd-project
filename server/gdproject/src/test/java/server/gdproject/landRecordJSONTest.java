@@ -18,7 +18,7 @@ public class landRecordJSONTest {
     @Test
     void landRecordSerializationTest() throws IOException {
 
-        LandRecord landRecord = new LandRecord("123 Mt Gay Rd", "Michael Covers", 2023, 100000, 1, 1);
+        LandRecord landRecord = new LandRecord("123 Mt Gay Rd", "Michael Covers", 2023, 100000, 1, 22L);
 
         assertThat(json.write(landRecord)).isStrictlyEqualToJson("expected.json");
 
@@ -44,7 +44,7 @@ public class landRecordJSONTest {
 
         assertThat(json.write(landRecord)).hasJsonPathNumberValue("@.id");
 
-        assertThat(json.write(landRecord)).extractingJsonPathNumberValue("@.id").isEqualTo(1);
+        assertThat(json.write(landRecord)).extractingJsonPathNumberValue("@.id").isEqualTo(22);
     }
 
     @Test
@@ -56,11 +56,11 @@ public class landRecordJSONTest {
                     "address": "123 Mt Gay Rd",
                     "value": 100000,
                     "owner": "Michael Covers",
-                    "id": 1
+                    "id": 22
                 }
                 """;
                 
-        assertThat(json.parse(expected)).isEqualTo(new LandRecord("123 Mt Gay Rd", "Michael Covers", 2023, 100000, 1, 1));
+        assertThat(json.parse(expected)).isEqualTo(new LandRecord("123 Mt Gay Rd", "Michael Covers", 2023, 100000, 1, 22L));
 
         assertThat(json.parseObject(expected).address()).isEqualTo("123 Mt Gay Rd");
 
@@ -71,6 +71,8 @@ public class landRecordJSONTest {
         assertThat(json.parseObject(expected).year()).isEqualTo(2023);
 
         assertThat(json.parseObject(expected).book()).isEqualTo(1);
+
+        assertThat(json.parseObject(expected).id()).isEqualTo(22);
     }
  
 }

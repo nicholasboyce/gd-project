@@ -1,0 +1,1 @@
+INSERT INTO LAND_RECORD("VALUE", "OWNER", "YEAR", BOOK, "ADDRESS", ID) VALUES (777000, 'Nicholas Boyce', 2024, 1, '123 Mulberry Lane', 22);

@@ -41,7 +41,7 @@ class GdProjectApplicationTests {
 		assertThat(book).isEqualTo(1);
 
 		Number id = documentContext.read("$.id");
-		assertThat(id).isEqualTo(1);
+		assertThat(id).isEqualTo(22);
 	}
 
 }
