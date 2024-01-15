@@ -2,6 +2,8 @@ package server.gdproject;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.net.URI;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -42,6 +44,30 @@ class GdProjectApplicationTests {
 
 		Number id = documentContext.read("$.id");
 		assertThat(id).isEqualTo(22);
+	}
+
+	@Test
+	void shouldNotReturnALandRecordWithAnUnknownID() {
+		ResponseEntity<String> response = restTemplate.getForEntity("/landrecords/2222", String.class);
+
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+		assertThat(response.getBody()).isBlank();
+	}
+
+	@Test
+	void shouldCreateANewLandRecord() {
+		LandRecord landRecord = new LandRecord("234 Ocean Way", "Kent Clark", 1982, 250000, 4, null);
+
+		ResponseEntity<Void> createResponse = restTemplate
+												.postForEntity("/landrecords", landRecord, Void.class);
+		
+		assertThat(createResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+
+		URI locationOfNewLandRecord = createResponse.getHeaders().getLocation();
+		ResponseEntity<String> getResponse = restTemplate
+												.getForEntity(locationOfNewLandRecord, String.class);
+
+		assertThat(getResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 
 }

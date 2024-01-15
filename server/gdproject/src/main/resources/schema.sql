@@ -1,4 +1,3 @@
-
 CREATE TABLE land_record
 (
    "VALUE"  NUMBER NOT NULL DEFAULT 0,
