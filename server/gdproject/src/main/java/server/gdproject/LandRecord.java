@@ -1,4 +1,6 @@
 package server.gdproject;
 
-public record LandRecord(String address, String owner, int year, int value, int book) {
+import org.springframework.data.annotation.Id;
+
+public record LandRecord(String address, String owner, int year, int value, int book, @Id int id) {
 }

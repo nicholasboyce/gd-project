@@ -3,5 +3,6 @@
     "book": 1,
     "address": "123 Mt Gay Rd",
     "value": 100000,
-    "owner": "Michael Covers"
+    "owner": "Michael Covers",
+    "id": 1
 }
