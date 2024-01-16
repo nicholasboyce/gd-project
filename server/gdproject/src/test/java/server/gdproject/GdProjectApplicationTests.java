@@ -15,6 +15,8 @@ import org.springframework.test.annotation.DirtiesContext;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 
+import net.minidev.json.JSONArray;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class GdProjectApplicationTests {
 
@@ -81,5 +83,48 @@ class GdProjectApplicationTests {
 
 		String address = documentContext.read("$.address");
 		assertThat(address).isEqualTo("234 Ocean Way");
+	}
+
+	@Test
+	void shouldReturnAllLandRecordsWhenListIsRequested() {
+		ResponseEntity<String> response = restTemplate
+											.getForEntity("/landrecords", String.class);
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+		DocumentContext documentContext = JsonPath.parse(response.getBody());
+
+		int landRecordCount = documentContext.read("$.length()");
+		assertThat(landRecordCount).isEqualTo(4);
+
+		JSONArray ids = documentContext.read("$..id");
+		assertThat(ids).containsExactlyInAnyOrder(22, 23, 30, 14);
+
+		JSONArray values = documentContext.read("$..value");
+		assertThat(values).containsExactlyInAnyOrder(777000, 1000000, 700000, 3000000);
+	}
+
+	@Test
+	void shouldReturnAPageOfLandRecords() {
+		ResponseEntity<String> response = restTemplate
+											.getForEntity("/landrecords?page=0&size=1", String.class);
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+		DocumentContext documentContext = JsonPath.parse(response.getBody());
+		JSONArray page = documentContext.read("[*]");
+		assertThat(page.size()).isEqualTo(1);
+	}
+
+	@Test
+	void shouldReturnASortedPageOfLandRecords() {
+		ResponseEntity<String> response = restTemplate
+											.getForEntity("/landrecords?page=0&size=1&sort=value,desc", String.class);
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+		DocumentContext documentContext = JsonPath.parse(response.getBody());
+		JSONArray page = documentContext.read("[*]");
+		assertThat(page.size()).isEqualTo(1);
+
+		int value = documentContext.read("$[0].value");
+		assertThat(value).isEqualTo(3000000);
 	}
 }
