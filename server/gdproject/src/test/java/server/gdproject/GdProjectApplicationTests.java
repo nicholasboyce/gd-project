@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
 
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
@@ -55,6 +56,7 @@ class GdProjectApplicationTests {
 	}
 
 	@Test
+	@DirtiesContext
 	void shouldCreateANewLandRecord() {
 		LandRecord landRecord = new LandRecord("234 Ocean Way", "Kent Clark", 1982, 250000, 4, null);
 
@@ -68,6 +70,16 @@ class GdProjectApplicationTests {
 												.getForEntity(locationOfNewLandRecord, String.class);
 
 		assertThat(getResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
-	}
 
+		DocumentContext documentContext = JsonPath.parse(getResponse.getBody());
+
+		Number id = documentContext.read("$.id");
+		assertThat(id).isNotNull();
+
+		String owner = documentContext.read("$.owner");
+		assertThat(owner).isEqualTo("Kent Clark");
+
+		String address = documentContext.read("$.address");
+		assertThat(address).isEqualTo("234 Ocean Way");
+	}
 }

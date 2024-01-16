@@ -3,8 +3,12 @@ package server.gdproject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+import java.net.URI;
 
 import java.util.Optional;
 
@@ -27,5 +31,17 @@ class LandRecordController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PostMapping
+    private ResponseEntity<Void> createLandRecord(@RequestBody LandRecord newLandRecordRequest, UriComponentsBuilder ucb) {
+        LandRecord savedLandRecord = landRecordRepository.save(newLandRecordRequest);
+
+        URI locationOfNewLandRecord = ucb
+                                        .path("/landrecords/{id}")
+                                        .buildAndExpand(savedLandRecord.id())
+                                        .toUri();
+        
+        return ResponseEntity.created(locationOfNewLandRecord).build();
     }
 }
