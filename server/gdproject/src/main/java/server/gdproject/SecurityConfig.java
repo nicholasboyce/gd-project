@@ -38,11 +38,6 @@ class SecurityConfig {
     @Bean
     UserDetailsService testOnlyUsers(PasswordEncoder passwordEncoder, DataSource dataSource) {
         User.UserBuilder users = User.builder();
-        UserDetails sarah = users
-            .username("sarah1")
-            .password(passwordEncoder.encode("abc123"))
-            .roles("ADMIN", "PAID")
-            .build();
         UserDetails melissa = users
             .username("melissa2")
             .password(passwordEncoder.encode("xyz321"))
@@ -54,7 +49,6 @@ class SecurityConfig {
             .roles("NON-PAID")
             .build();
         JdbcUserDetailsManager userManager = new JdbcUserDetailsManager(dataSource);
-        userManager.createUser(sarah);
         userManager.createUser(melissa);
         userManager.createUser(rory);
         return userManager;
