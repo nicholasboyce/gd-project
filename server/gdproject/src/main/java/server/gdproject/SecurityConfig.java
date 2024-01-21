@@ -1,5 +1,7 @@
 package server.gdproject;
 
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -11,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -33,7 +36,7 @@ class SecurityConfig {
     }
 
     @Bean
-    UserDetailsService testOnlyUsers(PasswordEncoder passwordEncoder) {
+    UserDetailsService testOnlyUsers(PasswordEncoder passwordEncoder, DataSource dataSource) {
         User.UserBuilder users = User.builder();
         UserDetails sarah = users
             .username("sarah1")
@@ -50,7 +53,11 @@ class SecurityConfig {
             .password(passwordEncoder.encode("gilmore"))
             .roles("NON-PAID")
             .build();
-        return new InMemoryUserDetailsManager(sarah, melissa, rory);
+        JdbcUserDetailsManager userManager = new JdbcUserDetailsManager(dataSource);
+        userManager.createUser(sarah);
+        userManager.createUser(melissa);
+        userManager.createUser(rory);
+        return userManager;
     }
 
 }
