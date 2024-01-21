@@ -127,4 +127,38 @@ class GdProjectApplicationTests {
 		int value = documentContext.read("$[0].value");
 		assertThat(value).isEqualTo(3000000);
 	}
+
+	@Test
+	void shouldNotReturnACashCardWhenUsingBadCredentials() {
+		ResponseEntity<String> response = restTemplate
+			.withBasicAuth("BAD-USER", "abc123")
+			.getForEntity("/landrecords/22", String.class);
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
+
+		response = restTemplate
+			.withBasicAuth("sarah1", "BAD-PASSWORD")
+			.getForEntity("/landrecords/22", String.class);
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
+	}
+
+	@Test
+	@DirtiesContext
+	void shouldPreventUsersWhoAreNotAdminsFromCreatingRecords() {
+		LandRecord landRecord = new LandRecord("234 Ocean Way", "Kent Clark", 1982, 250000, 4, null);
+
+		ResponseEntity<Void> response = restTemplate
+			.withBasicAuth("melissa2", "xyz321")
+			.postForEntity("/landrecords", landRecord, Void.class);
+
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+	}
+
+	@Test
+	void shouldRejectUsersWhoAreNotPaidUsers() {
+		ResponseEntity<String> response = restTemplate
+			.withBasicAuth("roryg", "gilmore")
+			.getForEntity("/landrecords/22", String.class);
+
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.FORBIDDEN);
+	}
 }

@@ -4,6 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import jakarta.servlet.http.HttpServletRequest;
+
 import java.net.URI;
+import java.security.Principal;
 
 import java.util.Optional;
 import java.util.List;
@@ -50,16 +56,23 @@ class LandRecordController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    private ResponseEntity<Void> createLandRecord(@RequestBody LandRecord newLandRecordRequest, UriComponentsBuilder ucb) {
-        LandRecord savedLandRecord = landRecordRepository.save(newLandRecordRequest);
-
-        URI locationOfNewLandRecord = ucb
-                                        .path("/landrecords/{id}")
-                                        .buildAndExpand(savedLandRecord.id())
-                                        .toUri();
+    private ResponseEntity<Void> createLandRecord(@RequestBody LandRecord newLandRecordRequest, UriComponentsBuilder ucb, HttpServletRequest request) {
         
-        return ResponseEntity.created(locationOfNewLandRecord).build();
+        if (request.isUserInRole("ADMIN")) {
+            LandRecord savedLandRecord = landRecordRepository.save(newLandRecordRequest);
+    
+            URI locationOfNewLandRecord = ucb
+                                            .path("/landrecords/{id}")
+                                            .buildAndExpand(savedLandRecord.id())
+                                            .toUri();
+    
+            return ResponseEntity.created(locationOfNewLandRecord).build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+
     }
     
 }

@@ -3,6 +3,7 @@ package server.gdproject;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +21,7 @@ class SecurityConfig {
          http
                  .authorizeHttpRequests(request -> request
                          .requestMatchers("/landrecords/**")
-                         .authenticated())
+                         .hasRole("PAID"))
                  .csrf(csrf -> csrf.disable())
                  .httpBasic(Customizer.withDefaults());
          return http.build();
@@ -37,9 +38,19 @@ class SecurityConfig {
         UserDetails sarah = users
             .username("sarah1")
             .password(passwordEncoder.encode("abc123"))
-            .roles() // No roles for now
+            .roles("ADMIN", "PAID")
             .build();
-        return new InMemoryUserDetailsManager(sarah);
+        UserDetails melissa = users
+            .username("melissa2")
+            .password(passwordEncoder.encode("xyz321"))
+            .roles("PAID")
+            .build();
+        UserDetails rory = users
+            .username("roryg")
+            .password(passwordEncoder.encode("gilmore"))
+            .roles("NON-PAID")
+            .build();
+        return new InMemoryUserDetailsManager(sarah, melissa, rory);
     }
 
 }
