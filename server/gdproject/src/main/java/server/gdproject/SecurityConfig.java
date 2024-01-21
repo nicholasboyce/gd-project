@@ -31,4 +31,15 @@ class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    UserDetailsService testOnlyUsers(PasswordEncoder passwordEncoder) {
+        User.UserBuilder users = User.builder();
+        UserDetails sarah = users
+            .username("sarah1")
+            .password(passwordEncoder.encode("abc123"))
+            .roles() // No roles for now
+            .build();
+        return new InMemoryUserDetailsManager(sarah);
+    }
+
 }

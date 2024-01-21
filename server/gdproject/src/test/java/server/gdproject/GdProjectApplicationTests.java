@@ -25,7 +25,7 @@ class GdProjectApplicationTests {
 
 	@Test
 	void shouldReturnALandRecordWhenDataIsSaved() {
-		ResponseEntity<String> response = restTemplate.getForEntity("/landrecords/22", String.class);
+		ResponseEntity<String> response = restTemplate.withBasicAuth("sarah1", "abc123").getForEntity("/landrecords/22", String.class);
 
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
@@ -51,7 +51,7 @@ class GdProjectApplicationTests {
 
 	@Test
 	void shouldNotReturnALandRecordWithAnUnknownID() {
-		ResponseEntity<String> response = restTemplate.getForEntity("/landrecords/2222", String.class);
+		ResponseEntity<String> response = restTemplate.withBasicAuth("sarah1", "abc123").getForEntity("/landrecords/2222", String.class);
 
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
 		assertThat(response.getBody()).isBlank();
@@ -63,13 +63,13 @@ class GdProjectApplicationTests {
 		LandRecord landRecord = new LandRecord("234 Ocean Way", "Kent Clark", 1982, 250000, 4, null);
 
 		ResponseEntity<Void> createResponse = restTemplate
-												.postForEntity("/landrecords", landRecord, Void.class);
+		.withBasicAuth("sarah1", "abc123").postForEntity("/landrecords", landRecord, Void.class);
 		
 		assertThat(createResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
 		URI locationOfNewLandRecord = createResponse.getHeaders().getLocation();
 		ResponseEntity<String> getResponse = restTemplate
-												.getForEntity(locationOfNewLandRecord, String.class);
+		.withBasicAuth("sarah1", "abc123").getForEntity(locationOfNewLandRecord, String.class);
 
 		assertThat(getResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
 
@@ -88,7 +88,7 @@ class GdProjectApplicationTests {
 	@Test
 	void shouldReturnAllLandRecordsWhenListIsRequested() {
 		ResponseEntity<String> response = restTemplate
-											.getForEntity("/landrecords", String.class);
+		.withBasicAuth("sarah1", "abc123").getForEntity("/landrecords", String.class);
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
 		DocumentContext documentContext = JsonPath.parse(response.getBody());
@@ -106,7 +106,7 @@ class GdProjectApplicationTests {
 	@Test
 	void shouldReturnAPageOfLandRecords() {
 		ResponseEntity<String> response = restTemplate
-											.getForEntity("/landrecords?page=0&size=1", String.class);
+		.withBasicAuth("sarah1", "abc123").getForEntity("/landrecords?page=0&size=1", String.class);
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
 		DocumentContext documentContext = JsonPath.parse(response.getBody());
@@ -117,7 +117,7 @@ class GdProjectApplicationTests {
 	@Test
 	void shouldReturnASortedPageOfLandRecords() {
 		ResponseEntity<String> response = restTemplate
-											.getForEntity("/landrecords?page=0&size=1&sort=value,desc", String.class);
+		.withBasicAuth("sarah1", "abc123").getForEntity("/landrecords?page=0&size=1&sort=value,desc", String.class);
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
 		DocumentContext documentContext = JsonPath.parse(response.getBody());
