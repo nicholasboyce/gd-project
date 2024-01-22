@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.DocumentContext;
 
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.hasItem;
@@ -109,15 +109,6 @@ class GdProjectApplicationTests {
 		this.mockMvc.perform(get("/landrecords?page=0&size=1"))
 					.andExpect(status().isOk())
 					.andExpect(jsonPath("$.size()").value(1));
-
-
-		// ResponseEntity<String> response = restTemplate
-		// .withBasicAuth("sarah1", "abc123").getForEntity("/landrecords?page=0&size=1", String.class);
-		// assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-
-		// DocumentContext documentContext = JsonPath.parse(response.getBody());
-		// JSONArray page = documentContext.read("[*]");
-		// assertThat(page.size()).isEqualTo(1);
 	}
 
 	@Test
@@ -128,41 +119,17 @@ class GdProjectApplicationTests {
 					.andExpect(jsonPath("$.size()").value(1))
 					.andExpect(jsonPath("$[0].value").value(3000000));
 
-		// ResponseEntity<String> response = restTemplate
-		// .withBasicAuth("sarah1", "abc123").getForEntity("/landrecords?page=0&size=1&sort=value,desc", String.class);
-		// assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-
-		// DocumentContext documentContext = JsonPath.parse(response.getBody());
-		// JSONArray page = documentContext.read("[*]");
-		// assertThat(page.size()).isEqualTo(1);
-
-		// int value = documentContext.read("$[0].value");
-		// assertThat(value).isEqualTo(3000000);
 	}
 
-	// @Test
-	// void shouldNotReturnACashCardWhenUsingBadCredentials() {
+	@Test
+	void shouldNotReturnACashCardWhenUsingBadCredentials() throws Exception {
 
-	// 	RequestPostProcessor badActor = user("BAD-USER").password("abc123");
-
-	// 	@WithMockUser(username = "BAD-USER", password = "abc123")
-	// 	this.mockMvc.perform(get("/landrecords/22").with())
-	// 				.andExpect(status().isUnauthorized());
+		this.mockMvc.perform(get("/landrecords/22").with(httpBasic("BAD-USER", "abc123")))
+					.andExpect(status().isUnauthorized());
 		
-	// 	@WithMockUser(username = "sarah1", password = "BAD-PASSWORD")
-	// 	this.mockMvc.perform(get("/landrecords/22").with())
-	// 				.andExpect(status().isUnauthorized());
-
-		// ResponseEntity<String> response = restTemplate
-		// 	.withBasicAuth("BAD-USER", "abc123")
-		// 	.getForEntity("/landrecords/22", String.class);
-		// assertThat(response.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
-
-		// response = restTemplate
-		// 	.withBasicAuth("sarah1", "BAD-PASSWORD")
-		// 	.getForEntity("/landrecords/22", String.class);
-		// assertThat(response.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
-	
+		this.mockMvc.perform(get("/landrecords/22").with(httpBasic("sarah1", "BAD-PASSWORD")))
+					.andExpect(status().isUnauthorized());
+	}
 
 	@Test
 	@DirtiesContext
@@ -176,12 +143,6 @@ class GdProjectApplicationTests {
 
 		this.mockMvc.perform(post("/landrecords").content(body).contentType(MediaType.APPLICATION_JSON))
 					.andExpect(status().isNotFound());
-
-		// ResponseEntity<Void> response = restTemplate
-		// 	.withBasicAuth("melissa2", "xyz321")
-		// 	.postForEntity("/landrecords", landRecord, Void.class);
-
-		// assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
 	}
 
 	@Test
@@ -190,11 +151,5 @@ class GdProjectApplicationTests {
 
 		this.mockMvc.perform(get("/landrecords/22"))
 					.andExpect(status().isForbidden());
-
-		// ResponseEntity<String> response = restTemplate
-		// 	.withBasicAuth("roryg", "gilmore")
-		// 	.getForEntity("/landrecords/22", String.class);
-
-		// assertThat(response.getStatusCode()).isEqualTo(HttpStatus.FORBIDDEN);
 	}
 }
