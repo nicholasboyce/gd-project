@@ -87,7 +87,7 @@ class LandRecordTests {
 
 		String body = mapper.writeValueAsString(landRecord);
 
-		MvcResult result = this.mockMvc.perform(post("/landrecords").content(body).contentType(MediaType.APPLICATION_JSON))
+		MvcResult result = this.mockMvc.perform(post("/landrecords").content(body).contentType(MediaType.APPLICATION_JSON).with(csrf()))
 					.andExpect(status().isCreated())
 					.andReturn();
 
@@ -155,7 +155,7 @@ class LandRecordTests {
 
 		String body = mapper.writeValueAsString(landRecord);
 
-		this.mockMvc.perform(post("/landrecords").content(body).contentType(MediaType.APPLICATION_JSON))
+		this.mockMvc.perform(post("/landrecords").content(body).contentType(MediaType.APPLICATION_JSON).with(csrf()))
 					.andExpect(status().isNotFound());
 	}
 

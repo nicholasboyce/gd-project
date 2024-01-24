@@ -17,6 +17,7 @@ import server.gdproject.TestSecurity.TestSecurityConfig;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -41,13 +42,13 @@ public class RegistrationTests {
 
         this.mockMvc.perform(post("/register").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                     .param("username", "bill72")
-                    .param("password", "banjokazooie"))
+                    .param("password", "banjokazooie").with(csrf()))
                     .andExpect(status().isOk())
                     .andExpect(content().string(is(equalTo("Registration complete!"))));
 
         this.mockMvc.perform(post("/register").contentType(MediaType.APPLICATION_FORM_URLENCODED)
                     .param("username", "bill72")
-                    .param("password", "banjokazooie"))
+                    .param("password", "banjokazooie").with(csrf()))
                     .andExpect(status().isOk())
                     .andExpect(content().string(is(equalTo("User already exists"))));
 
