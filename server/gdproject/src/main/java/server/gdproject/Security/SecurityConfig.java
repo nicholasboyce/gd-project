@@ -1,9 +1,10 @@
-package server.gdproject;
+package server.gdproject.Security;
 
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -36,8 +37,14 @@ class SecurityConfig {
     }
 
     @Bean
-    UserDetailsService testOnlyUsers(PasswordEncoder passwordEncoder, DataSource dataSource) {
+    @Profile("dev")
+    UserDetailsService userService(PasswordEncoder passwordEncoder, DataSource dataSource) {
         User.UserBuilder users = User.builder();
+        UserDetails sarah = users
+            .username("sarah2")
+            .password(passwordEncoder.encode("abc123"))
+            .roles("PAID", "ADMIN")
+            .build();
         UserDetails melissa = users
             .username("melissa2")
             .password(passwordEncoder.encode("xyz321"))
@@ -49,6 +56,7 @@ class SecurityConfig {
             .roles("NON-PAID")
             .build();
         JdbcUserDetailsManager userManager = new JdbcUserDetailsManager(dataSource);
+        userManager.createUser(sarah);
         userManager.createUser(melissa);
         userManager.createUser(rory);
         return userManager;
