@@ -26,8 +26,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.DocumentContext;
 
 import org.springframework.security.test.context.support.WithMockUser;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
+import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -127,14 +129,19 @@ class GdProjectApplicationTests {
 
 	}
 
+	//Not really a land record test... more of an authentication/registration test
 	@Test
-	void shouldNotReturnACashCardWhenUsingBadCredentials() throws Exception {
+	void shouldNotReturnALandRecordWhenUsingBadCredentials() throws Exception {
 
-		this.mockMvc.perform(get("/landrecords/22").with(httpBasic("BAD-USER", "abc123")))
-					.andExpect(status().isUnauthorized());
+		this.mockMvc.perform(formLogin().user("sarah1").password("abc123"))
+					.andExpect(authenticated());
+
+		this.mockMvc.perform(formLogin().user("BAD-USER").password("abc123"))
+					.andExpect(unauthenticated())
+					.andExpect(status().isFound());
 		
-		this.mockMvc.perform(get("/landrecords/22").with(httpBasic("sarah1", "BAD-PASSWORD")))
-					.andExpect(status().isUnauthorized());
+		this.mockMvc.perform(formLogin().user("sarah1").password("BAD-PASSWORD"))
+					.andExpect(unauthenticated());
 	}
 
 	@Test

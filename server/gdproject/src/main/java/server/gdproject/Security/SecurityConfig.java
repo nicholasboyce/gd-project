@@ -27,7 +27,7 @@ class SecurityConfig {
                          .requestMatchers("/landrecords/**")
                          .hasRole("PAID"))
                  .csrf(csrf -> csrf.disable())
-                 .httpBasic(Customizer.withDefaults());
+                 .formLogin(Customizer.withDefaults());
          return http.build();
     }
 
