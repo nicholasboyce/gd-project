@@ -1,4 +1,4 @@
-package server.gdproject;
+package server.gdproject.LandRecord;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;

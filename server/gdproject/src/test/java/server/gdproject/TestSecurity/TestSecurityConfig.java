@@ -1,4 +1,4 @@
-package server.gdproject.Security;
+package server.gdproject.TestSecurity;
 
 import javax.sql.DataSource;
 

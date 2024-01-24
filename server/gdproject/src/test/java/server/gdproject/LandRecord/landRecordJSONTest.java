@@ -1,4 +1,4 @@
-package server.gdproject;
+package server.gdproject.LandRecord;
 
 import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
+
+import server.gdproject.LandRecord.LandRecord;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -36,7 +38,7 @@ public class landRecordJSONTest {
 
         LandRecord landRecord = landRecords[0];
 
-        assertThat(json.write(landRecord)).isStrictlyEqualToJson("single.json");
+        assertThat(json.write(landRecord)).isStrictlyEqualToJson("../single.json");
 
         assertThat(json.write(landRecord)).hasJsonPathStringValue("@.address");
 
@@ -93,7 +95,7 @@ public class landRecordJSONTest {
 
     @Test
     void landRecordListSerializationTest() throws IOException {
-        assertThat(jsonList.write(landRecords)).isStrictlyEqualToJson("list.json");
+        assertThat(jsonList.write(landRecords)).isStrictlyEqualToJson("../list.json");
     }
 
     @Test

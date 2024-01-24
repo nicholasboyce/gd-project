@@ -42,7 +42,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 import net.minidev.json.JSONArray;
-import server.gdproject.Security.TestSecurityConfig;
+import server.gdproject.LandRecord.LandRecord;
+import server.gdproject.TestSecurity.TestSecurityConfig;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
