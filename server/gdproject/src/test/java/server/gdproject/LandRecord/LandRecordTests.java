@@ -1,4 +1,4 @@
-package server.gdproject;
+package server.gdproject.LandRecord;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -49,7 +49,7 @@ import server.gdproject.TestSecurity.TestSecurityConfig;
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @Import(TestSecurityConfig.class)
-class GdProjectApplicationTests {
+class LandRecordTests {
 	@Autowired
 	MockMvc mockMvc;
 

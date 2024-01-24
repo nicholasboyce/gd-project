@@ -38,7 +38,7 @@ public class landRecordJSONTest {
 
         LandRecord landRecord = landRecords[0];
 
-        assertThat(json.write(landRecord)).isStrictlyEqualToJson("../single.json");
+        assertThat(json.write(landRecord)).isStrictlyEqualToJson("../landRecordSingle.json");
 
         assertThat(json.write(landRecord)).hasJsonPathStringValue("@.address");
 
@@ -95,7 +95,7 @@ public class landRecordJSONTest {
 
     @Test
     void landRecordListSerializationTest() throws IOException {
-        assertThat(jsonList.write(landRecords)).isStrictlyEqualToJson("../list.json");
+        assertThat(jsonList.write(landRecords)).isStrictlyEqualToJson("../landRecordList.json");
     }
 
     @Test
