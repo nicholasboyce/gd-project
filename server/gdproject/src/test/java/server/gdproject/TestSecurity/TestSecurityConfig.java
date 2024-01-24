@@ -38,7 +38,7 @@ public class TestSecurityConfig {
 
     @Bean
     @Profile("test")
-    UserDetailsService userService(PasswordEncoder passwordEncoder, DataSource dataSource) {
+    JdbcUserDetailsManager userService(PasswordEncoder passwordEncoder, DataSource dataSource) {
         User.UserBuilder users = User.builder();
         UserDetails sarah = users
             .username("sarah1")
