@@ -1,23 +1,26 @@
 package server.gdproject.Registration;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 @RequestMapping("/register")
-public class RegistrationController {
+public class RegistrationRestController {
 
     private RegistrationService registrationService;
 
-    private RegistrationController(RegistrationService registrationService) {
+    private RegistrationRestController(RegistrationService registrationService) {
         this.registrationService = registrationService;
     }
 
     @PostMapping
+    @ResponseBody
     private ResponseEntity<String> createUser(RegistrationRequest newRegistrationRequest) {
         return registrationService.register(newRegistrationRequest);
     }
