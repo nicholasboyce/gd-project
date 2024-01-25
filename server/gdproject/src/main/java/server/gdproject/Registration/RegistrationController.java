@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RequestMapping("/register")
-public class RegistrationRestController {
+public class RegistrationController {
 
     private RegistrationService registrationService;
 
-    private RegistrationRestController(RegistrationService registrationService) {
+    private RegistrationController(RegistrationService registrationService) {
         this.registrationService = registrationService;
     }
 
