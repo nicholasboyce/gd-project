@@ -1,0 +1,66 @@
+:root {
+    --dark-green: hsla(120, 61%, 10%);
+    --light-green: hsla(120, 30%, 80%);
+    --light-pink: hsla(351, 100%, 86%);
+    --pale-yellow: hsla(55, 67%, 80%);
+}
+
+main {
+    flex-grow: 1;
+}
+
+form {
+    width: 70%;
+}
+
+input, select {
+    width: 50%;
+    padding: 10px 20px;
+    margin: 8px 0;
+}
+
+.form-container {
+    background-color: var(--pale-yellow);
+    color: var(--dark-green);
+}
+
+.form-container div {
+    padding: 1rem 0;
+}
+
+.form-container h1 {
+    font-size: 2rem;
+}
+
+.form-container h1 + p {
+    padding-top: 10px;
+}
+
+.form-container p {
+    font-size: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    margin-top: 15px;
+    padding: 5px 5px;
+}
+
+@media screen and (max-width: 7000px) {
+    form {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    
+    .form-container p {
+        flex-direction: column;
+        align-items: baseline;
+    }
+    input, select {
+        width: 100%;
+    }
+}
