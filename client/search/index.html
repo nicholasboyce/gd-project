@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eLandGrenada: About</title>
-    <link href="../styles/about.css" rel="stylesheet" type="text/css" />
+    <title>eLandGrenada: Search</title>
     <link href="../styles.css" rel="stylesheet" type="text/css" />
+    <link href="../styles/search.css" rel="stylesheet" type="text/css" />
     <script src="../script.js" defer></script>
+    <script src="../properties.js" defer></script>
 </head>
-<body>
+<body class="search-page">
     <header>
         <div class="page">
             <div class="logo">
@@ -31,20 +32,44 @@
                     </a>
                     <div class="navbar-links">
                         <ul class="menu">
-                            <li><a href="../index.html">Home</a></li>
-                            <li><a href="search.html">Search</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="register.html">Register</a></li>
+                            <li><a href="../">Home</a></li>
+                            <li><a href="#">Search</a></li>
+                            <li><a href="../about/">About</a></li>
+                            <li><a href="../register">Register</a></li>
                             <li class="signin"><a href="#">Sign In</a></li>
                         </ul>
                     </div>
                 </nav>
             </div>
         </section>
-        <section class="about">
+
+        <!--Second section based on JSTOR-->
+        <!--How do I make it so that this has its own style? Stylesheet was designed for one page only-->
+        <section class="pale-yellow">
             <div class="page">
-                <h1>About</h1>
-                <p>The GLA was established in 2012 and is the result of the Government of Grenada’s Public Sector Modernization Program. Its primary purpose is to ensure that the land resource is used in an efficient and responsible way to achieve the sustainable development of the nation. By merging the various land functions under one Agency and using such technologies as eGovernment and computer mapping the GLA will be able to deliver public service more efficiently. For example, one of the initiatives (branded as eLandGrenada) will provide citizens and investors with 24/7 access to land related information. </p>
+                <h1 class="advanced">Advanced Search</h1>
+                <form>
+                    <fieldset class="search-bar"> <!--Should I use a fieldset or div for this?-->
+                        <p>
+                            <label for="query">Query: </label>
+                            <input id="query" name="query" type="search" />
+                        </p>
+                        <select id="filter" name="filter">
+                            <option value="address">Address</option>
+                            <option value="book">Book number</option>
+                            <option value="docNumber">Document registration number</option>
+                            <option value="year">Document entry year</option>
+                            <option value="owner">Known Names</option>
+                        </select>
+                    </fieldset>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="pale-yellow results">
+            <div class="page" id="results">
+
             </div>
         </section>
         <!--This will be the modal button (login popup).-->
