@@ -1,6 +1,7 @@
 package server.gdproject.Registration;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import server.gdproject.AppUser.AppUser;
 import server.gdproject.AppUser.AppUserDetailsService;
+import server.gdproject.AppUser.AppUserRoles;
 
 @Service
 public class RegistrationService {
@@ -29,14 +31,13 @@ public class RegistrationService {
     }
 
     public ResponseEntity<String> register(RegistrationRequest newRegistrationRequest) {
-        List<GrantedAuthority> roles = new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority("PAID"));
+
+        List<AppUserRoles> roles = Collections.singletonList(new AppUserRoles(null, "PAID", newRegistrationRequest.email())) ;
 
         if (userDetailsService.userExists(newRegistrationRequest.email())) {
             return ResponseEntity.ok().body("User already exists");
         } else {
             AppUser newUser = new AppUser(
-                null, 
                 newRegistrationRequest.company(), 
                 newRegistrationRequest.businessType(), 
                 newRegistrationRequest.firstName(), 

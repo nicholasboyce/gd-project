@@ -7,18 +7,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.domain.Persistable;
 import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public record AppUser(
-    @Id Long id, 
+public record AppUser( 
     String company, 
     String businessType, 
     String firstName, 
     String lastName, 
-    String email,
+    @Id String email,
     String password, 
     String address, 
     String city, 
@@ -27,7 +27,7 @@ public record AppUser(
     String home, 
     String mobile, 
     String job,
-    Collection<GrantedAuthority> roles) implements UserDetails {
+    Collection<AppUserRoles> roles) implements UserDetails {
 
 
     @Override
@@ -52,7 +52,11 @@ public record AppUser(
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (AppUserRoles role: roles) {
+            authorities.add(new SimpleGrantedAuthority(role.role()));
+        }
+        return authorities;
     }
 
     @Override
@@ -66,8 +70,8 @@ public record AppUser(
     }
 
     public static AppUser builder(String email, String password) {
-        List<GrantedAuthority> roles = Collections.singletonList(new SimpleGrantedAuthority("PAID")) ;
-        return new AppUser(null, "Company", "Industry", "Ted", "Watterson", email, password, "123 Townsville Rd", "Townsville", 11111, "GD", "5555555", "5555555", "Caretaker", roles);
+        List<AppUserRoles> roles = Collections.singletonList(new AppUserRoles(null, "PAID", email));
+        return new AppUser("Company", "Industry", "Ted", "Watterson", email, password, "123 Townsville Rd", "Townsville", 11111, "GD", "5555555", "5555555", "Caretaker", roles);
     }
     
 
