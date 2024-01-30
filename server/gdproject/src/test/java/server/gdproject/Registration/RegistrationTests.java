@@ -12,6 +12,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+
 import server.gdproject.TestSecurity.TestSecurityConfig;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -30,7 +32,8 @@ import org.springframework.test.annotation.DirtiesContext;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-@Import(TestSecurityConfig.class)
+// @Import(TestSecurityConfig.class)
+@ContextConfiguration(classes = TestSecurityConfig.class)
 public class RegistrationTests {
 
     @Autowired

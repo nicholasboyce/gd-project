@@ -89,20 +89,24 @@ public class TestSecurityConfig {
 	// 	return providerManager;
 	// }
 
-    // @Bean
-    // @Profile("test")
-    // DaoAuthenticationProvider daoAuthenticationProvider(AppUserDetailsService appUserDetailsService, PasswordEncoder passwordEncoder) {
-    //     DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-    //     provider.setUserDetailsService(appUserDetailsService);
-    //     provider.setPasswordEncoder(passwordEncoder);
-    //     return provider;
-    // }
-
     @Bean
-    UserDetailsService users(AppUserDetailsService userDetailsService) {
-        AppUser user = AppUser.builder("sarah1", "abc123");
-        userDetailsService.createUser(user);
+    @Profile("test")
+    DaoAuthenticationProvider daoAuthenticationProvider(AppUserDetailsService appUserDetailsService, PasswordEncoder passwordEncoder) {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 
-        return userDetailsService;
+        AppUser user = AppUser.builder("sarah1", passwordEncoder.encode("abc123"));
+        appUserDetailsService.createUser(user);
+
+        provider.setUserDetailsService(appUserDetailsService);
+        provider.setPasswordEncoder(passwordEncoder);
+        return provider;
     }
+
+    // @Bean
+    // UserDetailsService users(AppUserDetailsService userDetailsService) {
+    //     AppUser user = AppUser.builder("sarah1", "abc123");
+    //     userDetailsService.createUser(user);
+
+    //     return userDetailsService;
+    // }
 }
