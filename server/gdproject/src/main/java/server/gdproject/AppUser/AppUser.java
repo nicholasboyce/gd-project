@@ -7,18 +7,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.domain.Persistable;
 import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public record AppUser( 
+public record AppUser(
+    @Id Long id, 
     String company, 
     String businessType, 
     String firstName, 
     String lastName, 
-    @Id String email,
+    String email,
     String password, 
     String address, 
     String city, 
@@ -71,7 +71,7 @@ public record AppUser(
 
     public static AppUser builder(String email, String password) {
         List<AppUserRoles> roles = Collections.singletonList(new AppUserRoles(null, "PAID", email));
-        return new AppUser("Company", "Industry", "Ted", "Watterson", email, password, "123 Townsville Rd", "Townsville", 11111, "GD", "5555555", "5555555", "Caretaker", roles);
+        return new AppUser(null, "Company", "Industry", "Ted", "Watterson", email, password, "123 Townsville Rd", "Townsville", 11111, "GD", "5555555", "5555555", "Caretaker", roles);
     }
     
 

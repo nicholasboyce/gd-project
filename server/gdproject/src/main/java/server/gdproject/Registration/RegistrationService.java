@@ -38,6 +38,7 @@ public class RegistrationService {
             return ResponseEntity.ok().body("User already exists");
         } else {
             AppUser newUser = new AppUser(
+                null,
                 newRegistrationRequest.company(), 
                 newRegistrationRequest.businessType(), 
                 newRegistrationRequest.firstName(), 
