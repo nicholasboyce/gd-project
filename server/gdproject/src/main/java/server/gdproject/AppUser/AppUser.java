@@ -54,7 +54,7 @@ public record AppUser(
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
         for (AppUserRoles role: roles) {
-            authorities.add(new SimpleGrantedAuthority(role.role()));
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.role()));
         }
         return authorities;
     }

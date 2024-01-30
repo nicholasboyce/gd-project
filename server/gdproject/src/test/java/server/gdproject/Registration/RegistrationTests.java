@@ -4,6 +4,7 @@ package server.gdproject.Registration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -24,6 +25,8 @@ import static org.springframework.security.test.web.servlet.response.SecurityMoc
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.Collections;
 
 import org.hamcrest.Matchers;
 import org.springframework.test.annotation.DirtiesContext;
@@ -79,7 +82,7 @@ public class RegistrationTests {
 
 
         this.mockMvc.perform(formLogin().user("bill72").password("banjokazooie"))
-                    .andExpect(authenticated());
+                    .andExpect(authenticated().withRoles("PAID"));
 
         this.mockMvc.perform(formLogin().user("BAD-USER").password("banjokazooie"))
                     .andExpect(unauthenticated());
