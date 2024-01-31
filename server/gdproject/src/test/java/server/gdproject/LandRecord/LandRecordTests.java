@@ -49,17 +49,16 @@ import net.minidev.json.JSONArray;
 import server.gdproject.LandRecord.LandRecord;
 import server.gdproject.TestSecurity.TestSecurityConfig;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @Import(TestSecurityConfig.class)
 // @ContextConfiguration(classes = TestSecurityConfig.class)
+@WebAppConfiguration
 class LandRecordTests {
 	@Autowired
 	MockMvc mockMvc;
 
-	@Autowired
-	TestRestTemplate restTemplate;
 
 	@Test
 	@WithMockUser(username = "sarah1", password = "abc123", roles = {"ADMIN", "PAID"})

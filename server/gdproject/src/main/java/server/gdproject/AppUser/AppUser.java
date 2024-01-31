@@ -69,9 +69,12 @@ public record AppUser(
        return true;
     }
 
-    public static AppUser builder(String email, String password) {
-        List<AppUserRoles> roles = Collections.singletonList(new AppUserRoles(null, "PAID", email));
-        return new AppUser(null, "Company", "Industry", "Ted", "Watterson", email, password, "123 Townsville Rd", "Townsville", 11111, "GD", "5555555", "5555555", "Caretaker", roles);
+    public static AppUser builder(String email, String password, String ...roles) {
+        List<AppUserRoles> authorities = new ArrayList<>();
+        for (String role: roles) {
+            authorities.add(new AppUserRoles(null, role, email));
+        }
+        return new AppUser(null, "Company", "Industry", "Ted", "Watterson", email, password, "123 Townsville Rd", "Townsville", 11111, "GD", "5555555", "5555555", "Caretaker", authorities);
     }
     
 
