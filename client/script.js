@@ -27,5 +27,7 @@ loginBackground.addEventListener('click', () => {
   modal.classList.toggle('popup')
 });
 
+fetch("http://localhost:8080/csrf", {method: 'GET'}).then(data => console.log(data))
+
 
   

@@ -20,6 +20,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import server.gdproject.AppUser.AppUser;
 import server.gdproject.AppUser.AppUserDetailsService;
@@ -34,6 +36,7 @@ class SecurityConfig {
                  .authorizeHttpRequests(request -> request
                          .requestMatchers("/landrecords/**").hasRole("PAID")
                          .requestMatchers("/register").permitAll()
+                         .requestMatchers("/csrf").permitAll()
                          .requestMatchers("/h2-console/**").permitAll()
                          .requestMatchers("/**.css").permitAll()
                          .requestMatchers("/**.png").permitAll())
@@ -42,6 +45,16 @@ class SecurityConfig {
                  .formLogin(Customizer.withDefaults());
          return http.build();
     }
+
+    // @Bean
+    // public WebMvcConfigurer corsConfigurer() {
+    //     return new WebMvcConfigurer() {
+    //         @Override
+    //         public void addCorsMappings(CorsRegistry registry) {
+    //             registry.addMapping("/**").allowedOrigins("http://localhost:5173");
+    //         }
+    //     };
+    // }
 
     @Bean
     PasswordEncoder passwordEncoder() {

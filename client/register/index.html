@@ -43,7 +43,7 @@
         </section>
         <section class="form-container">
             <div class="page">
-                <form>
+                <form action="http://localhost:8080/register" method="post">
                     <h1>Registration for eLandGrenada Document Access</h1>
                     <p>
                         <label for="company">Company Name:</label>
@@ -63,16 +63,20 @@
                         </select>
                     </p>
                     <p>
-                        <label for="firstname">First Name: <span aria-label="required">*</span></label>
-                        <input type="text" id="firstname" name="firstname" required />
+                        <label for="firstName">First Name: <span aria-label="required">*</span></label>
+                        <input type="text" id="firstName" name="firstName" required />
                     </p>
                     <p>
-                        <label for="lastname">Last Name: <span aria-label="required">*</span></label>
-                        <input type="text" id="lastname" name="lastname" required />
+                        <label for="lastName">Last Name: <span aria-label="required">*</span></label>
+                        <input type="text" id="lastName" name="lastName" required />
                     </p>
                     <p>
                         <label for="email">Email address: <span aria-label="required">*</span></label>
                         <input type="email" id="email" name="email" required />
+                    </p>
+                    <p>
+                        <label for="password">Password: <span aria-label="required">*</span></label>
+                        <input type="password" id="password" name="password" required />
                     </p>
                     <p>
                         <label for="address">Address: <span aria-label="required">*</span></label>
