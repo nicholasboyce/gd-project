@@ -1,5 +1,6 @@
 const toggleButton = document.getElementsByClassName('toggle-button')[0]
 const menu = document.getElementsByClassName('menu')[0]
+const modalForm = document.querySelector('.login-form')
 
 toggleButton.addEventListener('click', () => {
     menu.classList.toggle('active')
@@ -27,7 +28,22 @@ loginBackground.addEventListener('click', () => {
   modal.classList.toggle('popup')
 });
 
-fetch("http://localhost:8080/csrf", {method: 'GET'}).then(data => console.log(data))
+modalForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const data = new URLSearchParams();
+  const formData = new FormData(modalForm);
+  for (const pair of formData) {
+    data.append(pair[0].slice(6), pair[1])
+  }
+  fetch('http://localhost:8080/login', {
+    method: "POST",
+    mode: 'cors',
+    body: data
+  }).then((response) => {
+    console.log(response)
+  })
+})
 
 
   

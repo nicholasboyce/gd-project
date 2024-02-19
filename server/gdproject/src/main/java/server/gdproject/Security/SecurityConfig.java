@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -73,6 +75,15 @@ class SecurityConfig {
         provider.setPasswordEncoder(passwordEncoder);
         return provider;
     }
+
+    @Bean
+    public AuthenticationManager authenticationManager(DaoAuthenticationProvider authenticationProvider) {
+
+		ProviderManager providerManager = new ProviderManager(authenticationProvider);
+		providerManager.setEraseCredentialsAfterAuthentication(false);
+
+		return providerManager;
+	}
 
     // @Bean
     // @Profile("dev")

@@ -24,7 +24,7 @@ import java.util.Optional;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "https://nicholasboyce.github.io")
+@CrossOrigin(origins = {"https://nicholasboyce.github.io", "http://localhost:5173"})
 @RequestMapping("/landrecords")
 class LandRecordController {
 
