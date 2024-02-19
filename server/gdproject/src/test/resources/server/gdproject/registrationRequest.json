@@ -1,0 +1,15 @@
+{
+    "company": "BigCo",
+    "businessType": "Industry",
+    "firstName": "bill",
+    "lastName": "bob",
+    "email": "billbob@bibby.com",
+    "password": "greenelephant",
+    "address": "111 Big Hill",
+    "city": "Mt Gay",
+    "zip": 11111,
+    "country": "GD",
+    "home": "5550555",
+    "mobile": "5550155",
+    "job": "Analyst"
+}

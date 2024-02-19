@@ -1,0 +1,45 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.1'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'server'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.h2database:h2'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.2.2'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+test {
+ testLogging {
+     events "passed", "skipped", "failed" // , "standardOut", "standardError"
+
+     showExceptions true
+     exceptionFormat "full"
+     showCauses true
+     showStackTraces true
+
+     showStandardStreams = false
+ }
+}

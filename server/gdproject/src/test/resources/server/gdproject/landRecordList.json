@@ -1,0 +1,34 @@
+[
+    {
+        "year": 2023,
+        "book": 1,
+        "address": "123 Mt Gay Rd",
+        "value": 100000,
+        "owner": "Michael Covers",
+        "id": 22
+    },
+    {
+        "year": 2018,
+        "book": 2,
+        "id": 23, 
+        "address": "15 Governor's Road",
+        "value": 1000000,
+        "owner": "John Henry"
+    },
+    {   
+        "year": 2007,
+        "book": 3,
+        "id": 30, 
+        "address": "42 Nutmeg Hill",
+        "value": 700000,
+        "owner": "Joseph Covers"
+    },
+    {
+        "year": 2013,
+        "book": 4,
+        "id": 14, 
+        "address": "1 Braithwaite Estate",
+        "value": 3000000,
+        "owner": "Anthony Brathwaite"
+    }
+]
