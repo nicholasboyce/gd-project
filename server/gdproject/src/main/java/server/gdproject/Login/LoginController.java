@@ -36,7 +36,6 @@ public class LoginController {
 		return "login";
 	}
 
-    @CrossOrigin(origins = {"https://nicholasboyce.github.io", "http://localhost:5173"})
     @PostMapping(
         path = "/login",
         consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})

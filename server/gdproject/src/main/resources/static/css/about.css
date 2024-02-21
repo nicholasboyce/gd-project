@@ -1,0 +1,29 @@
+:root {
+    --dark-green: hsla(120, 61%, 10%);
+    --light-green: hsla(120, 30%, 80%);
+    --light-pink: hsla(351, 100%, 86%);
+    --pale-yellow: hsla(55, 67%, 80%);
+}
+main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.about {
+    flex-grow: 1;
+    background-color: var(--pale-yellow);
+    color: var(--dark-green);
+}
+
+.about div {
+    padding: 1rem 0;
+}
+
+.about h1 {
+    font-size: 2rem;
+}
+
+.about p {
+    padding-top: .75rem;
+    font-size: 1.25rem;
+}

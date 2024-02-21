@@ -37,13 +37,10 @@ class SecurityConfig {
          http
                  .authorizeHttpRequests(request -> request
                          .requestMatchers("/landrecords/**").hasRole("PAID")
-                         .requestMatchers("/register").permitAll()
-                         .requestMatchers("/csrf").permitAll()
                          .requestMatchers("/h2-console/**").permitAll()
-                         .requestMatchers("/**.css").permitAll()
-                         .requestMatchers("/**.png").permitAll())
+                         .requestMatchers("/csrf").permitAll()
+                         .requestMatchers("/**").permitAll())
                 .headers((headers) -> headers.frameOptions((frameOptions) -> frameOptions.disable()))
-                 .csrf(csrf -> csrf.disable())
                  .formLogin(Customizer.withDefaults());
          return http.build();
     }
