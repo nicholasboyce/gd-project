@@ -1,6 +1,6 @@
 
 // Fetch the JSON file of the properties.
-fetch('properties.json')
+fetch('/landrecords')
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`);
@@ -88,10 +88,10 @@ function initialize(properties) {
 
         address.textContent = entry.address;
         owner.textContent = `Owner: ${entry.owner}`;
-        year.textContent = `Entry Year: ${entry.entryYear}`;
+        year.textContent = `Entry Year: ${entry.year}`;
         value.textContent = `Home Value: $${entry.value}`;
-        bookNum.textContent = `Book Number: ${entry.bookNumber}`;
-        docNum.textContent = `Document Reg. Number: ${entry.docNumber}`;
+        bookNum.textContent = `Book Number: ${entry.book}`;
+        docNum.textContent = `Document Reg. Number: ${entry.book}`;
 
         card.append(address, owner, year, value, bookNum, docNum);
         card.setAttribute("class", "result");
