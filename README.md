@@ -14,7 +14,7 @@ Stories:
 - [X] Create separate about page
 - [X] Create login pop up
 - [X] Create register page
-- [ ] Implement backend
+- [X] Implement backend
 - [X] Allow users to see all available data
 - [X] Allow users to search data through book number
 - [X] Allow users to search data via document registration number
