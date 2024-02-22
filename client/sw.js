@@ -4,7 +4,7 @@ self.addEventListener("install", (e) => {
         .open("data-store")
         .then(async (cache) => {
           let ok
-          const base = 'gd-project'
+          const base = 'client'
           const paths =  [
             `/${base}/`,
             `/${base}/index.html`,
