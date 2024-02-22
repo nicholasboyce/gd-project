@@ -50,7 +50,7 @@ function initialize(properties) {
         lastFilter = currFilter = filter.value;
         lastSearch = currSearch = query.value.trim();
 
-        finalGroup = filteredGroup.filter((property) => property[`${currFilter}`].toString().includes(currSearch));
+        finalGroup = filteredGroup.filter((property) => property[`${currFilter}`].toString().toLowerCase().includes(currSearch.toLowerCase()));
         updateDisplay();
     }
     
