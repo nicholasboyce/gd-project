@@ -6,7 +6,7 @@ My [updated version](https://nicholasboyce.github.io/gd-project/) looks like thi
 ![](./client/images/newpage.png)
 
 The original [website](https://elandregistry.gov.gd/) looks like this:
-![](.client/images/screenshot.png)
+![](./client/images/screenshot.png)
 
 Stories:
 - [X] Implement responsive navbar
