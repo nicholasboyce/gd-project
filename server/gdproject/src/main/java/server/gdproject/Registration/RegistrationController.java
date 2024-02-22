@@ -2,7 +2,6 @@ package server.gdproject.Registration;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +20,6 @@ public class RegistrationController {
         this.registrationService = registrationService;
     }
 
-    @CrossOrigin(origins = {"https://nicholasboyce.github.io", "http://localhost:5173"})
     @PostMapping
     @ResponseBody
     private ResponseEntity<String> createUser(RegistrationRequest newRegistrationRequest) {

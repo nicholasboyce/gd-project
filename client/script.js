@@ -10,7 +10,7 @@ toggleButton.addEventListener('click', () => {
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register(
-        "/gd-project/sw.js",
+        "/sw.js",
       )
       .then(() => console.log("Service Worker Registered"));
 }
@@ -28,7 +28,7 @@ loginBackground.addEventListener('click', () => {
   modal.classList.toggle('popup')
 });
 
-modalForm.addEventListener('submit', (e) => {
+modalForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const data = new URLSearchParams();
@@ -36,13 +36,26 @@ modalForm.addEventListener('submit', (e) => {
   for (const pair of formData) {
     data.append(pair[0].slice(6), pair[1])
   }
-  fetch('http://localhost:8080/login', {
-    method: "POST",
-    mode: 'cors',
-    body: data
-  }).then((response) => {
-    console.log(response)
-  })
+  const request = new Request('http://localhost:8080/csrf', {credentials: "include"})
+  tokenResponse = await fetch(request)
+  token = await tokenResponse.json()
+
+  console.log(token.token)
+  // await fetch('http://localhost:8080/login', {
+  //   method: "POST",
+  //   mode: 'cors',
+  //   headers: {
+  //     'X-CSRF-TOKEN': token.token,
+  //   },
+  //   body: data,
+  //   credentials: "include"
+  // }).then((response) => {
+  //   console.log(response)
+  // })
+
+  // const result = await fetch('http://localhost:8080/landrecords')
+  // const records = await result.json();
+  // console.log(records);
 })
 
 

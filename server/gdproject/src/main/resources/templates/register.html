@@ -32,10 +32,10 @@
                     <div class="navbar-links">
                         <ul class="menu">
                             <li><a href="/">Home</a></li>
-                            <li><a href="/search.html">Search</a></li>
-                            <li><a href="/about.html">About</a></li>
+                            <li><a href="/search">Search</a></li>
+                            <li><a href="/about">About</a></li>
                             <li><a href="#">Register</a></li>
-                            <li class="signin"><a href="#">Sign In</a></li>
+                            <li class="signin"><a href="./login">Sign In</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -360,8 +360,8 @@
                     <input type="text" placeholder="Username" />
                     <input type="password" placeholder="Password" />
                     <a href="#">Forgot your password?</a>
-
                     <button type="submit">LOGIN</button>
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 </form>
             </div>
         </div>

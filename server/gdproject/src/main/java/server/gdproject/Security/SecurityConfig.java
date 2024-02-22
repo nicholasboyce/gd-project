@@ -1,29 +1,18 @@
 package server.gdproject.Security;
 
-import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 
 import server.gdproject.AppUser.AppUser;
 import server.gdproject.AppUser.AppUserDetailsService;
@@ -34,26 +23,14 @@ class SecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-         http
-                 .authorizeHttpRequests(request -> request
-                         .requestMatchers("/landrecords/**").hasRole("PAID")
-                         .requestMatchers("/h2-console/**").permitAll()
-                         .requestMatchers("/csrf").permitAll()
-                         .requestMatchers("/**").permitAll())
-                .headers((headers) -> headers.frameOptions((frameOptions) -> frameOptions.disable()))
-                 .formLogin(Customizer.withDefaults());
-         return http.build();
+        http
+            .authorizeHttpRequests(request -> request
+                    .requestMatchers("/landrecords/**").hasRole("PAID")
+                    .requestMatchers("/h2-console/**").permitAll()
+                    .requestMatchers("/**").permitAll())
+            .formLogin(form -> form.defaultSuccessUrl("/index.html").permitAll());
+        return http.build();
     }
-
-    // @Bean
-    // public WebMvcConfigurer corsConfigurer() {
-    //     return new WebMvcConfigurer() {
-    //         @Override
-    //         public void addCorsMappings(CorsRegistry registry) {
-    //             registry.addMapping("/**").allowedOrigins("http://localhost:5173");
-    //         }
-    //     };
-    // }
 
     @Bean
     PasswordEncoder passwordEncoder() {
