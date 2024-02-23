@@ -1,15 +1,15 @@
-// package server.gdproject.Csrf;
+package server.gdproject.Csrf;
 
-// import org.springframework.security.web.csrf.CsrfToken;
-// import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-// @RestController
-// public class CsrfController {
+@RestController
+public class CsrfController {
 
-//     @GetMapping("/csrf")
-//     public CsrfToken csrf(CsrfToken csrfToken) {
-//         return csrfToken;
-//     }
+    @GetMapping("/csrf")
+    public CsrfToken csrf(CsrfToken csrfToken) {
+        return csrfToken;
+    }
 
-// }
+}

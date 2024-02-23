@@ -72,7 +72,6 @@ function initialize(properties) {
             results.appendChild(list);
             for (const property of finalGroup) {
                 list.appendChild(createCard(property));
-                console.log("Ready!");
             }
         }
     }

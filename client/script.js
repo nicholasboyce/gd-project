@@ -8,11 +8,15 @@ toggleButton.addEventListener('click', () => {
 
 // Register service worker to control making site work offline
 if ("serviceWorker" in navigator) {
+  try {
     navigator.serviceWorker
       .register(
         "/sw.js",
       )
       .then(() => console.log("Service Worker Registered"));
+  } catch (error) {
+    console.error(`Registration failed with ${error}`);
+  }
 }
 
 const loginButton = document.querySelector(".signin");
@@ -28,35 +32,35 @@ loginBackground.addEventListener('click', () => {
   modal.classList.toggle('popup')
 });
 
-modalForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
+// modalForm.addEventListener('submit', async (e) => {
+//   e.preventDefault();
 
-  const data = new URLSearchParams();
-  const formData = new FormData(modalForm);
-  for (const pair of formData) {
-    data.append(pair[0].slice(6), pair[1])
-  }
-  const request = new Request('http://localhost:8080/csrf', {credentials: "include"})
-  tokenResponse = await fetch(request)
-  token = await tokenResponse.json()
+//   const data = new URLSearchParams();
+//   const formData = new FormData(modalForm);
+//   for (const pair of formData) {
+//     data.append(pair[0].slice(6), pair[1])
+//   }
+//   const request = new Request('http://localhost:8080/csrf', {credentials: "include"})
+//   tokenResponse = await fetch(request)
+//   token = await tokenResponse.json()
 
-  console.log(token.token)
-  // await fetch('http://localhost:8080/login', {
-  //   method: "POST",
-  //   mode: 'cors',
-  //   headers: {
-  //     'X-CSRF-TOKEN': token.token,
-  //   },
-  //   body: data,
-  //   credentials: "include"
-  // }).then((response) => {
-  //   console.log(response)
-  // })
+//   console.log(token.token)
+//   await fetch('http://localhost:8080/login', {
+//     method: "POST",
+//     mode: 'cors',
+//     headers: {
+//       'X-CSRF-TOKEN': token.token,
+//     },
+//     body: data,
+//     credentials: "include"
+//   }).then((response) => {
+//     console.log(response)
+//   })
 
-  // const result = await fetch('http://localhost:8080/landrecords')
-  // const records = await result.json();
-  // console.log(records);
-})
+//   const result = await fetch('http://localhost:8080/landrecords')
+//   const records = await result.json();
+//   console.log(records);
+// })
 
 
   

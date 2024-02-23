@@ -50,7 +50,4 @@ if ("serviceWorker" in navigator) {
 //   })
 // })
 
-fetch('/landrecords').then(json => json.json()).then(data => console.log(data));
-
-
   

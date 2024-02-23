@@ -12,7 +12,7 @@ self.addEventListener("install", (e) => {
             `/${base}/js/script.js`,
             `/${base}/images`,
             `/${base}/images/Coat_of_arms_of_Grenada.png`,
-            `/${base}/images/Coat_of_arms_of_Grenada.png`,
+            `/${base}/images/Coat_of_arms_of_Grenada.svg`,
             `/${base}/images/Coat_of_arms_of_the_University_of_the_West_Indies.png`,
             `/${base}/images/grenada-coast.jpg`,
             `/${base}/images/logo-wb-header-en.svg`,
