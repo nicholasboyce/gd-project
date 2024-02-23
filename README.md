@@ -28,3 +28,6 @@ Technologies Involved:
 - JS Fetch API
 - IndexedDB API
 - Cache API (Offline storage/website usability)
+- Java
+- Spring Boot
+- H2 / SQL
