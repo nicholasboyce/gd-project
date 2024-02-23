@@ -1,4 +1,4 @@
-FROM gradle:latest
+FROM gradle:latest as build
 COPY --chown=gradle:gradle . .
 RUN ./gradlew build --stacktrace
 
