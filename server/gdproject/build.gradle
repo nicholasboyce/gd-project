@@ -25,6 +25,7 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.2.2'
+	runtimeOnly 'org.postgresql:postgresql'
 }
 
 tasks.named('test') {

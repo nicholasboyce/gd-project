@@ -1,0 +1,20 @@
+version: '2.21.0'
+
+services:
+  db:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USERNAME: ${DB_USERNAME} 
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: landrecords
+
+  app:
+    build: .
+    depends_on:
+      - "db"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/landrecords
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}

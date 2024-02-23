@@ -26,7 +26,6 @@ class SecurityConfig {
         http
             .authorizeHttpRequests(request -> request
                     .requestMatchers("/landrecords/**").hasRole("PAID")
-                    .requestMatchers("/h2-console/**").permitAll()
                     .requestMatchers("/**").permitAll())
             .formLogin(form -> form.defaultSuccessUrl("/index.html").permitAll());
         return http.build();
@@ -38,7 +37,7 @@ class SecurityConfig {
     }
 
     @Bean
-    @Profile("dev")
+    @Profile({"dev","prod"})
     DaoAuthenticationProvider daoAuthenticationProvider(AppUserDetailsService appUserDetailsService, PasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 
@@ -58,31 +57,5 @@ class SecurityConfig {
 
 		return providerManager;
 	}
-
-    // @Bean
-    // @Profile("dev")
-    // JdbcUserDetailsManager userService(PasswordEncoder passwordEncoder, DataSource dataSource) {
-    //     User.UserBuilder users = User.builder();
-    //     UserDetails sarah = users
-    //         .username("sarah2")
-    //         .password(passwordEncoder.encode("abc123"))
-    //         .roles("PAID", "ADMIN")
-    //         .build();
-    //     UserDetails melissa = users
-    //         .username("melissa2")
-    //         .password(passwordEncoder.encode("xyz321"))
-    //         .roles("PAID")
-    //         .build();
-    //     UserDetails rory = users
-    //         .username("roryg")
-    //         .password(passwordEncoder.encode("gilmore"))
-    //         .roles("NON-PAID")
-    //         .build();
-    //     JdbcUserDetailsManager userManager = new JdbcUserDetailsManager(dataSource);
-    //     userManager.createUser(sarah);
-    //     userManager.createUser(melissa);
-    //     userManager.createUser(rory);
-    //     return userManager;
-    // }
 
 }
