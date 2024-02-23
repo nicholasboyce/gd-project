@@ -20,7 +20,6 @@
         </div>
     </header>
     <main>
-        <!--First section will be the nav section. -->
         <section class="first-section">
             <div class="page">
                 <nav class="navbar">
@@ -35,7 +34,7 @@
                             <li><a href="./search">Search</a></li>
                             <li><a href="#">About</a></li>
                             <li><a href="./register">Register</a></li>
-                            <li class="signin"><a href="./login">Sign In</a></li>
+                            <li class="signin"><a href="#">Sign In</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -47,7 +46,6 @@
                 <p>The GLA was established in 2012 and is the result of the Government of Grenada’s Public Sector Modernization Program. Its primary purpose is to ensure that the land resource is used in an efficient and responsible way to achieve the sustainable development of the nation. By merging the various land functions under one Agency and using such technologies as eGovernment and computer mapping the GLA will be able to deliver public service more efficiently. For example, one of the initiatives (branded as eLandGrenada) will provide citizens and investors with 24/7 access to land related information. </p>
             </div>
         </section>
-        <!--This will be the modal button (login popup).-->
         <div class="modal">
             <div class="login-background"></div>
             <div class="login">
@@ -58,7 +56,6 @@
                     <input type="password" placeholder="Password" id="login-password" name="login-password"/>
                     <a href="#">Forgot your password?</a>
                     <button type="submit">LOGIN</button>
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 </form>
             </div>
         </div>

@@ -20,7 +20,6 @@
         </header>
         <main>
 
-            <!--First section will be the nav section. -->
             <section class="first-section">
                 <div class="page">
                     <nav class="navbar">
@@ -35,14 +34,13 @@
                                 <li><a href="./search">Search</a></li>
                                 <li><a href="./about">About</a></li>
                                 <li><a href="./register">Register</a></li>
-                                <li class="signin"><a href="./login">Sign In</a></li>
+                                <li class="signin"><a href="#">Sign In</a></li>
                             </ul>
                         </div>
                     </nav>
                 </div>
             </section>
 
-            <!--Second section will be hero image section. -->
             <section class="second-section">
                 <div class="page">
                     <div class="hero-text">
@@ -53,7 +51,6 @@
                 </div>
             </section>
 
-            <!--Third section will list reasons why one should sign up to make an account. -->
             <section class="third-section">
                 <div class="page">
                     <div class="cards">
@@ -91,7 +88,6 @@
                 </div>
             </section>
 
-            <!--This will be the modal button (login popup).-->
             <div class="modal">
                 <div class="login-background"></div>
                 <div class="login">
@@ -102,7 +98,6 @@
                         <input type="password" placeholder="Password" id="login-password" name="login-password"/>
                         <a href="#">Forgot your password?</a>
                         <button type="submit">LOGIN</button>
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                     </form>
                 </div>
             </div>
